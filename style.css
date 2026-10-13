@@ -2957,6 +2957,12 @@ section.is-visible .event-icon {
   }
 }
 
+#btnConfirmarRsvp{
+  background:url("Images/textura-2.png") center/cover no-repeat !important;
+  color:#0b1f3a !important;
+  border-color:#0b1f3a !important;
+}
+
 /* ================= BOTONES SLIDE IN ================= */
 
 /* Estado inicial */

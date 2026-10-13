@@ -149,8 +149,8 @@ function resetConfirmUI() {
 
 function formatGuestName(value) {
   const name = String(value || "").trim();
-  if (name.length <= 15) return name;
-  return name.match(/.{1,15}(?:\s+|$)|.{1,15}/g)?.join("\n") || name;
+  if (name.length <= 25) return name;
+  return name.match(/.{1,25}(?:\s+|$)|.{1,25}/g)?.join("\n") || name;
 }
 
 document.addEventListener("DOMContentLoaded", () => {
