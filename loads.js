@@ -31,7 +31,7 @@ window.seedEventGuestsToFirebase = async function seedEventGuestsToFirebase(expl
   }
 
   await rsvpDB.seedEventConfigToFirebase?.(eventId, { force: true });
-  const result = await rsvpDB.migrateLocalGuestsToFirebase(eventId, { force: true });
+  const result = await rsvpDB.migrateLocalGuestsToFirebase(eventId, { force: false });
   console.log(`Invitados creados en Firebase: ${result.total || guests.length}`);
   return { ok: true, guests: result.total || guests.length };
 };
@@ -42,7 +42,27 @@ function getQueryParam(key) {
   return params.get(key);
 }
 
-document.addEventListener("DOMContentLoaded", () => {
+function applyGuest(guest) {
+  if (!guest) {
+    window.currentGuest = null;
+    return;
+  }
+
+  window.currentGuest = {
+    id: String(guest.id),
+    name: guest.name || guest.nombre || "Invitado",
+    passes: Number(guest.passes ?? guest.pases ?? 1),
+  };
+  const nameEl = document.getElementById("guestCardName");
+  const seatsEl = document.getElementById("guestCardSeats");
+  const seatsTxtEl = document.getElementById("guestCardSeatsTxt");
+  if (nameEl) nameEl.textContent = window.currentGuest.name;
+  if (seatsEl) seatsEl.textContent = String(window.currentGuest.passes);
+  if (seatsTxtEl) seatsTxtEl.textContent = window.currentGuest.passes === 1 ? "lugar" : "lugares";
+  window.dispatchEvent(new CustomEvent("guest:updated"));
+}
+
+document.addEventListener("DOMContentLoaded", async () => {
   const guestId = getQueryParam("id");
 
   // Si no hay id, no marcamos error: solo no hay invitado
@@ -53,8 +73,24 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const guest = guests.find((g) => String(g.id) === String(guestId));
 
+  // Firebase is the source of truth so admin edits appear in the invitation.
+  if (window.RSVPDatabase?.getInvitadoById) {
+    try {
+      const remoteGuest = await window.RSVPDatabase.getInvitadoById(
+        window.config?.event?.defaultEventId || "guadalupejuanmanuel2027",
+        guestId
+      );
+      if (remoteGuest?.activo !== false) {
+        applyGuest(remoteGuest);
+        return;
+      }
+    } catch (error) {
+      console.warn("No se pudo cargar el invitado desde Firebase:", error);
+    }
+  }
+
   if (guest) {
-    window.currentGuest = guest;
+    applyGuest(guest);
 
     // Si tienes estos elementos en alguna parte, los llena (opcional)
     const guestNameEl = document.getElementById("guest-name");

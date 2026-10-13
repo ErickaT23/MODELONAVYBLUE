@@ -26,10 +26,10 @@ const config = {
     legacyKeyParam: "admin"
   },
   seo: {
-    titulo: "Guadalupe & Juan Manuel | 15.05.2027",
-    descripcion: "Te invitamos a compartir con nosotros este día tan especial el 15 de mayo de 2027 en La Antigua Guatemala.",
+    titulo: "Modelo Navy blue | Invitación de boda romántica",
+    descripcion: "Modelo de invitación de boda estilo realista y romántico, con diseño editorial en tonos azul marino.",
     autor: "Two Design",
-    keywords: "invitacion de boda, Guadalupe, Juan Manuel, boda, La Antigua Guatemala",
+    keywords: "Modelo Navy blue, modelo de invitacion de boda, invitacion de boda realista, invitacion romantica, diseño editorial",
     ogImage: "https://images.pexels.com/photos/39931209/pexels-photo-39931209.jpeg"
   },
   pareja: {

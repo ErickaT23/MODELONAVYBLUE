@@ -147,6 +147,12 @@ function resetConfirmUI() {
   hideMsg(msg);
 }
 
+function formatGuestName(value) {
+  const name = String(value || "").trim();
+  if (name.length <= 15) return name;
+  return name.match(/.{1,15}(?:\s+|$)|.{1,15}/g)?.join("\n") || name;
+}
+
 document.addEventListener("DOMContentLoaded", () => {
   clearStoredConfirmations();
 
@@ -173,7 +179,9 @@ document.addEventListener("DOMContentLoaded", () => {
       return;
     }
 
-    inputNombre.value = invitado.nombre;
+     const formattedName = formatGuestName(invitado.nombre);
+     inputNombre.value = formattedName;
+     inputNombre.rows = Math.max(2, formattedName.split("\n").length);
 
     const maxPasses = Math.max(1, Number(invitado.pases || 1));
     guestCount.innerHTML = "";
