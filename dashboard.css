@@ -3,9 +3,9 @@
   --paper: rgba(255, 255, 255, 0.92);
   --paper-strong: #ffffff;
   --blue: #9c3207;
-  --blue-soft: #b8643b;
+  --blue-soft: #0b1f3a;
   --navy: #3d4039;
-  --gold: #b8643b;
+  --gold: #0b1f3a;
   --gold-soft: #d6b27a;
   --line: rgba(156, 50, 7, 0.18);
   --line-strong: rgba(156, 50, 7, 0.32);
@@ -104,7 +104,7 @@ body {
 }
 
 .summary-card-highlight {
-  background: linear-gradient(145deg, var(--blue) 0%, #b8643b 100%);
+  background: linear-gradient(145deg, var(--blue) 0%, #0b1f3a 100%);
 }
 
 .summary-label {
