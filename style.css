@@ -803,8 +803,8 @@ a{
     border-radius:50%;
     display:grid;
     place-items:center;
-    background:rgba(255,255,255,.08);
-    color:#B8643B;
+     background:rgba(11,31,58,.08);
+     color:#0b1f3a;
     backdrop-filter:blur(4px);
     box-shadow:0 10px 24px rgba(24,26,39,.12);
     z-index:1200;
@@ -823,10 +823,10 @@ a{
   }
   .music-bubble:hover,
   .music-bubble:focus-visible{
-     background:#ebe5d3f0;
-    color:#f1f5fc;
-    border-color:#B8643B;
-    box-shadow:0 14px 28px rgba(129,52,30,.22);
+     background:rgba(11,31,58,.08);
+     color:#0b1f3a;
+     border-color:#0b1f3a;
+     box-shadow:0 14px 28px rgba(11,31,58,.22);
   }
   .music-bubble:focus-visible{
     outline:none;
@@ -3152,7 +3152,7 @@ section.is-visible .btn-outline:nth-of-type(2) {
   z-index:1;
   top:0;
   right:0;
-  width:min(34%, 150px);
+   width:70px;
   height:auto;
   transform:scaleX(-1);
   pointer-events:none;
